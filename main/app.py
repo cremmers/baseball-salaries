@@ -8,7 +8,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 
 def salary_rank(year: str) -> pd.DataFrame:
-	salaries = pd.read_csv('../static/Salaries.csv')
+	salaries = pd.read_csv('./static/Salaries.csv')
 
 	salaries['yearID'] = salaries['yearID'].astype('str')
 	salaries.drop('playerID', axis=1, inplace=True)
@@ -21,7 +21,7 @@ def salary_rank(year: str) -> pd.DataFrame:
 	return salaries
 
 def champ_rank(year: str) -> pd.DataFrame:
-	champs = pd.read_csv('../static/SeriesPost.csv')
+	champs = pd.read_csv('./static/SeriesPost.csv')
 
 	champs.drop(['wins', 'losses', 'ties'], axis=1, inplace=True)
 	champs = champs.loc[champs['yearID'] >= 1985]
@@ -48,7 +48,7 @@ def champ_rank(year: str) -> pd.DataFrame:
 	return champs
 
 def get_years() -> list:
-	salaries = pd.read_csv('../static/Salaries.csv')
+	salaries = pd.read_csv('./static/Salaries.csv')
 	salaries['yearID'] = salaries['yearID'].astype('str')
 	years = salaries.groupby(by='yearID', as_index=False).sum()
 	year_list = years['yearID']
@@ -56,14 +56,14 @@ def get_years() -> list:
 
 
 def get_teams() -> list:
-	salaries = pd.read_csv('../static/Salaries.csv')
+	salaries = pd.read_csv('./static/Salaries.csv')
 	teams = salaries.groupby(by='teamID', as_index=False).sum()
 	team_list = teams['teamID']
 	return team_list
 
 
 def team_salary(teams: list) -> pd.DataFrame:
-	salaries = pd.read_csv('../static/Salaries.csv')
+	salaries = pd.read_csv('./static/Salaries.csv')
 
 	salaries['yearID'] = salaries['yearID'].astype('str')
 	salaries.drop(['playerID', 'lgID'], axis=1, inplace=True)
